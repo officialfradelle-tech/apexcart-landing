@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your account — Paxora</title>
+<meta name="description" content="Create your Paxora account and use your own Stripe account on Shopify.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0D17; --muted:#5B6175; --line:#E6E8F0; --soft:#F6F7FB;
+    --violet:#6B4DFF; --violet-h:#5A3DF0;
+    --g1:#42EECD; --g2:#1198D6; --g3:#0A77B4; --g4:#06578B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{
+    font-family:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+    background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 38%,var(--g3) 70%,var(--g4) 100%);
+    -webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;
+  }
+  .waves{position:fixed;inset:0;pointer-events:none;opacity:.5}
+  a{color:inherit}
+  header{position:relative;z-index:1;width:100%;max-width:1240px;margin:0 auto;padding:18px clamp(16px,4vw,40px)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 22px;border-radius:999px;
+    background:rgba(255,255,255,.75);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
+    box-shadow:0 10px 30px -18px rgba(6,40,80,.5)}
+  .logo{display:inline-flex;align-items:center;text-decoration:none;font-weight:700;font-size:21px;letter-spacing:-0.045em;color:var(--ink)}
+  .logo i{width:7px;height:7px;border-radius:50%;background:var(--violet);margin-left:2px;display:inline-block}
+  .nav a.back{font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink)}
+  .nav a.back:hover{color:var(--muted)}
+  main{position:relative;z-index:1;flex:1;display:flex;align-items:center;justify-content:center;padding:24px 16px 40px}
+  .card{width:100%;max-width:440px;background:#fff;border-radius:28px;padding:34px clamp(22px,5vw,38px) 28px;
+    box-shadow:0 40px 80px -30px rgba(6,40,80,.55),0 0 0 1px rgba(255,255,255,.6)}
+  .eyebrow{font-family:"Geist Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+  h1{margin-top:10px;font-size:clamp(26px,5vw,30px);line-height:1.1;letter-spacing:-0.035em;font-weight:700}
+  .sub{margin-top:8px;font-size:15px;line-height:1.5;color:var(--muted)}
+  .google{margin-top:24px;width:100%;height:52px;display:flex;align-items:center;justify-content:center;gap:12px;border-radius:999px;
+    border:1px solid var(--line);background:#fff;font:inherit;font-size:16px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s}
+  .google:hover{background:var(--soft);border-color:#D6D9E4}
+  .or{display:flex;align-items:center;gap:14px;margin:22px 0 6px;color:var(--muted);font-size:13.5px}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+  label{display:block;margin-top:16px;font-size:14px;font-weight:500}
+  .field{position:relative;margin-top:7px}
+  input[type=email],input[type=text],input[type=password]{width:100%;height:50px;padding:0 16px;border-radius:14px;border:1px solid var(--line);
+    background:#fff;font:inherit;font-size:16px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+  input::placeholder{color:#A0A5B5}
+  input:focus{border-color:var(--violet);box-shadow:0 0 0 4px rgba(107,77,255,.14)}
+  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:10px;background:transparent;
+    color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .eye:hover{background:var(--soft)}
+  .hint{margin-top:7px;font-size:12.5px;color:var(--muted)}
+  .check{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:13.5px;line-height:1.45;color:var(--muted);cursor:pointer;font-weight:400}
+  .check input{margin-top:2px;width:18px;height:18px;accent-color:var(--violet);flex:0 0 18px}
+  .submit{margin-top:22px;width:100%;height:54px;border:0;border-radius:999px;background:var(--violet);color:#fff;font:inherit;font-size:16px;font-weight:600;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 14px 30px -14px rgba(107,77,255,.8);transition:background .2s,transform .2s}
+  .submit:hover{background:var(--violet-h);transform:translateY(-1px)}
+  .notice{display:none;margin-top:16px;padding:14px 16px;border-radius:14px;background:#EEF2FF;color:#3B2FB8;font-size:14px;line-height:1.5}
+  .notice.show{display:block}
+  .notice a{font-weight:600}
+  .legal{margin-top:18px;font-size:12.5px;line-height:1.5;color:var(--muted);text-align:center}
+  .legal a{color:var(--ink)}
+  .signin{margin:24px -38px -28px;padding:18px;border-top:1px solid var(--line);background:var(--soft);border-radius:0 0 28px 28px;text-align:center;font-size:14.5px;color:var(--muted)}
+  .signin a{color:var(--violet);font-weight:600;text-decoration:none}
+  .signin a:hover{text-decoration:underline}
+  footer{position:relative;z-index:1;text-align:center;padding:0 16px 26px;font-size:12.5px;color:rgba(255,255,255,.85)}
+  footer a{color:#fff}
+  @media (max-width:480px){.signin{margin-left:-22px;margin-right:-22px}}
+</style>
+</head>
+<body>
+<svg class="waves" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="1">
+    <path d="M-100 700C200 560 420 640 720 520S1240 300 1540 360"/>
+    <path d="M-100 740C220 600 440 680 740 560S1260 340 1540 400"/>
+    <path d="M-100 780C240 640 460 720 760 600S1280 380 1540 440"/>
+    <path d="M-100 220C260 120 520 260 820 180S1260 40 1540 90"/>
+    <path d="M-100 260C280 160 540 300 840 220S1280 80 1540 130"/>
+  </g>
+</svg>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="/">Paxora<i></i></a>
+    <a class="back" href="/">← Back to home</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="eyebrow">Get started</div>
+    <h1>Create your Paxora account</h1>
+    <p class="sub">Use your own Stripe account on Shopify.</p>
+
+    <button type="button" class="google" data-soon>
+      <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+      Sign up with Google
+    </button>
+
+    <div class="or">or sign up with email</div>
+
+    <form id="signup" novalidate autocomplete="off">
+      <label for="email">Email</label>
+      <div class="field"><input id="email" type="email" placeholder="you@yourstore.com" autocomplete="off"></div>
+
+      <label for="name">Full name</label>
+      <div class="field"><input id="name" type="text" placeholder="Jane Doe" autocomplete="off"></div>
+
+      <label for="pw">Password</label>
+      <div class="field">
+        <input id="pw" type="password" placeholder="At least 8 characters" autocomplete="new-password">
+        <button type="button" class="eye" id="eye" aria-label="Show password">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+
+      <label class="check"><input type="checkbox"> <span>Send me product updates and news from Paxora. Unsubscribe anytime.</span></label>
+
+      <button type="submit" class="submit">Create account
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="notice" id="notice" role="status">
+        Account sign-ups are opening soon. Want early access? Email us at <a href="mailto:support@paxora.io">support@paxora.io</a>.
+      </div>
+    </form>
+
+    <p class="legal">By creating an account, you agree to Paxora's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+
+    <div class="signin">Already have an account? <a href="#" data-soon>Sign in</a></div>
+  </div>
+</main>
+
+<footer>Paxora is a product of Alvorix LTD, United Kingdom · <a href="mailto:support@paxora.io">support@paxora.io</a></footer>
+
+<script>
+  // Design only: nothing is sent or stored. Shows a notice instead.
+  (function () {
+    var form = document.getElementById('signup'), notice = document.getElementById('notice');
+    function soon(e) { if (e) e.preventDefault(); notice.classList.add('show'); notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    form.addEventListener('submit', function (e) { soon(e); document.getElementById('pw').value = ''; });
+    document.querySelectorAll('[data-soon]').forEach(function (el) { el.addEventListener('click', soon); });
+    var eye = document.getElementById('eye'), pw = document.getElementById('pw');
+    eye.addEventListener('click', function () { var show = pw.type === 'password'; pw.type = show ? 'text' : 'password'; eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password'); });
+  })();
+</script>
+</body>
+</html>
